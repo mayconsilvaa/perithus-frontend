@@ -5,36 +5,51 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  align-items: center;
 `;
 export const Content = styled.div`
   display: flex;
-  width: 600px;
+  width: 700px;
+  height: 500px;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
+  flex-direction: row;
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
 
-  .content-body {
+  .content-right {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
-    width: 400px;
-    height: 350px;
-    background-color: #ffffff;
-    border-radius: 10px;
+    align-items: center;
+    width: 350px;
+    height: 100%;
+    /* border: 1px solid red; */
+
+    img {
+      /* width: 200px; */
+      height: 300px;
+    }
+  }
+
+  .content-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 100%;
+    /* border: 1px solid black; */
+    padding: 10px;
 
     form {
       display: flex;
       flex-direction: column;
-      padding: 20px;
-
-      h1 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
 
       span {
+        color: #2264b7;
+        font-size: 20px;
         font-weight: 600;
+        margin-bottom: 20px;
       }
 
       input {
@@ -59,11 +74,6 @@ export const Content = styled.div`
         :hover {
           background-color: ${darken(0.02, '#2264b2')};
         }
-      }
-
-      a {
-        text-align: center;
-        color: #2264b7;
       }
     }
   }

@@ -6,16 +6,16 @@ import history from './services/history';
 import GlobalStyle from './styles/global';
 
 /** Context API */
-import { AuthProvider } from './context/AuthContext';
+import AppProvider from './context/IndexContext';
 
 export default function App() {
   return (
     <Router history={history}>
-      <AuthProvider>
+      <AppProvider>
         <Routes />
         <GlobalStyle />
         <ToastContainer autoClose={3000} />
-      </AuthProvider>
+      </AppProvider>
     </Router>
   );
 }

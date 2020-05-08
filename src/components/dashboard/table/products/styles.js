@@ -40,4 +40,23 @@ export const Container = styled.div`
       border-radius: 0 8px 8px 0;
     }
   }
+
+  .btn-edit {
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    background-color: #2264b7;
+  }
+
+  .btn-delete {
+    border-radius: 5px;
+    width: 120px;
+    height: 30px;
+    background-color: #cb0000;
+    color: #fff;
+  }
+
+  a {
+    color: #fff;
+  }
 `;

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container,
   ContainerCard,
@@ -7,7 +7,6 @@ import {
   ContainerSearch,
   ContentSearch,
   ContainerButton,
-  ContainerModal,
   ContainerTable,
   ContainerFooter,
 } from './styles';
@@ -16,16 +15,32 @@ import {
 import Header from '../../components/dashboard/header';
 import Card from '../../components/dashboard/cards';
 import Search from '../../components/dashboard/search';
-import CadImposto from '../../components/dashboard/modals/cadImposto';
-import Table from '../../components/dashboard/table';
+import TableTributes from '../../components/dashboard/table/tributes';
+import TableProducts from '../../components/dashboard/table/products';
 import Footer from '../../components/dashboard/footer';
 
-export default function Dashboard() {
-  const [open, setOpen] = useState(false);
+/** Context */
+import { useTributes } from '../../context/TributesContext';
+import { useProducts } from '../../context/ProductsContext';
+import api from '../../services/api';
 
-  const openModal = () => {
-    setOpen(!open);
-  };
+export default function Dashboard() {
+  const [type, setType] = useState('');
+  const { tipo } = useTributes();
+  const { tipoP } = useProducts();
+
+  useEffect(() => {
+    setType(tipo);
+  }, [tipo]);
+
+  useEffect(() => {
+    setType(tipoP);
+  }, [tipoP]);
+
+  async function loadTotalVendas() {
+    const response = await api.get(`/product`);
+  }
+
   return (
     <Container>
       <Header />
@@ -56,16 +71,34 @@ export default function Dashboard() {
       </ContainerSearch>
       <ContainerButton>
         <div>
-          <button type="submit" onClick={openModal}>
-            Cadastrar Imposto
+          <button className="btn-add">
+            <Link to="/products/register">Novo Produto</Link>
+          </button>
+          <button className="btn-calcular">
+            <Link to="/tributes/register">Calcular Imposto</Link>
           </button>
         </div>
       </ContainerButton>
       {/** Modal */}
-      <ContainerModal>{open && <CadImposto />}</ContainerModal>
+      {/* <ContainerModal>{open && <CadImposto />}</ContainerModal> */}
       {/** Table */}
       <ContainerTable>
-        <Table />
+        {(() => {
+          if (type === 'Imposto') {
+            return <TableTributes />;
+          }
+          if (type === 'Produto') {
+            return <TableProducts />;
+          }
+
+          if (type === '') {
+            return (
+              <div>
+                <h4>Nenhum registro localizado....</h4>
+              </div>
+            );
+          }
+        })()}
       </ContainerTable>
       <ContainerFooter>
         <Footer />

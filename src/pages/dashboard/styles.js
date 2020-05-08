@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 export const Container = styled.div`
   display: flex;
@@ -52,13 +51,24 @@ export const ContainerButton = styled.div`
     justify-content: flex-end;
     /* border: 1px solid red; */
 
-    button {
+    .btn-add {
+      height: 40px;
+      background-color: green;
+      border-radius: 5px;
+      margin-left: 5px;
+    }
+
+    a {
+      padding: 10px;
+      color: #ffffff;
+      font-weight: 600 !important;
+    }
+
+    .btn-calcular {
       height: 40px;
       background-color: #2264b7;
       border-radius: 5px;
-      color: #ffffff;
-      padding: 10px;
-      font-weight: 600 !important;
+      margin-left: 5px;
     }
   }
 `;
@@ -66,6 +76,8 @@ export const ContainerButton = styled.div`
 export const ContainerModal = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
+  align-items: center;
   justify-content: center;
   /* margin-top: -350px; */
   /* border: 1px solid red; */

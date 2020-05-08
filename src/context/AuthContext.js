@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useState } from 'react';
+import React, { createContext, useCallback, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import api from '../services/api';
@@ -60,8 +60,17 @@ const AuthProvider = ({ children }) => {
   );
 };
 
+function useAuth() {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error('useAuth must be used within an AuthProvider');
+  }
+  return context;
+}
+
 AuthProvider.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-export { AuthContext, AuthProvider };
+export { AuthProvider, useAuth };

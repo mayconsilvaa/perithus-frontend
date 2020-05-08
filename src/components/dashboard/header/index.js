@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../context/AuthContext';
+import React from 'react';
+import { useAuth } from '../../../context/AuthContext';
 import { Container } from './styles';
 
 /** IMAGES */
 import ImgLogo from '../../../assets/img/icone-logo.png';
 
 export default function Header() {
-  const { signOut } = useContext(AuthContext);
+  const { signOut } = useAuth();
 
   return (
     <Container>

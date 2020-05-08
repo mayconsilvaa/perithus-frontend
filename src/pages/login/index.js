@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Container, Content } from './styles';
-
-import { AuthContext } from '../../context/AuthContext';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Login() {
   const [dados, setDados] = useState([]);
 
-  const { signIn } = useContext(AuthContext);
+  const { signIn } = useAuth();
 
   const handleChange = (e) => {
     setDados({ ...dados, [e.target.name]: e.target.value });
@@ -47,6 +47,9 @@ export default function Login() {
               required
             />
             <button type="submit">ACESSAR</button>
+            <br />
+            <hr />
+            <Link to="/register">Clique aqui e faça o seu cadastro!</Link>
           </form>
         </div>
       </Content>

@@ -10,11 +10,11 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   display: flex;
-  width: 1155px;
+  width: 1100px;
   height: 70px;
   align-items: center;
   background-color: #ffffff;
-  box-shadow: 2px 2px 3px #888888;
+  box-shadow: 0 2px 3px #888888;
   border-radius: 5px;
 
   form {

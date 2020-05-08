@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 /** Import Layouts */
 import DefaultLayout from '../pages/_layouts/default';
@@ -12,7 +12,7 @@ export default function RouteWrapper({
   isPrivate,
   ...rest
 }) {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
   const signed = user;
 
   if (!signed && isPrivate) {

@@ -1,29 +1,36 @@
 import React, { useState } from 'react';
 import { Container, Content } from './styles';
-import api from '../../../services/api';
+import { useTributes } from '../../../context/TributesContext';
+import { useProducts } from '../../../context/ProductsContext';
 
 export default function Search() {
   const [dados, setDados] = useState([]);
+  const { allAtributes } = useTributes();
+  const { allProducts } = useProducts();
 
   const handleChange = (e) => {
     setDados({ ...dados, [e.target.name]: e.target.value });
   };
 
-  console.log(dados);
-
   const handleFilter = async (e) => {
     e.preventDefault();
+    e.target.reset();
 
-    const { year, month } = dados;
+    const { year, month, type } = dados;
 
-    // console.log('dadosAQ', year, month);
-
-    const response = await api.get('/tributes', {
-      year_reference: year,
-      month,
-    });
-
-    console.log('result', response);
+    if (type === 'Imposto') {
+      allAtributes({
+        year,
+        month,
+        type,
+      });
+    } else {
+      allProducts({
+        year,
+        month,
+        type,
+      });
+    }
   };
 
   return (
@@ -33,10 +40,11 @@ export default function Search() {
           <span>Tipo</span>
           <select
             className="select-options"
-            name="tipo"
+            name="type"
             onChange={handleChange}
+            required
           >
-            <option>Selecione...</option>
+            <option value="">Selecione...</option>
             <option value="Produto">Produto</option>
             <option value="Imposto">Imposto</option>
           </select>
@@ -46,14 +54,16 @@ export default function Search() {
             name="year"
             placeholder="Informe o ano (ex: 2020)"
             onChange={handleChange}
+            required
           />
           <span>Mês</span>
           <select
             className="select-options"
             name="month"
             onChange={handleChange}
+            required
           >
-            <option>Selecione...</option>
+            <option value="">Selecione...</option>
             <option value="01">Janeiro</option>
             <option value="02">Fevereiro</option>
             <option value="03">Março</option>
