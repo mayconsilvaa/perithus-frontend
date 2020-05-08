@@ -20,6 +20,15 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 O Gestor Financeiro é um projeto que visa auxiliar na educação econômica e entender melhor como faturar, lucrar com a venda e distribuição dos produtos.
 
+## FRONT-END
+
+## :heavy_check_mark: Feito:
+
+- Tela login
+- Tela cadastro
+- Dashboard
+- Tela Adicionar Produto
+- Tela Calcular Imposto
 
 ---
 
